@@ -10,7 +10,7 @@ The project workflow and benchmark suite follow the course project plan: distill
 
 ## Why this repo exists
 
-The original implementation was lost. This repo is designed so you can reproduce the project end-to-end from scratch, including:
+This repo is designed so you can reproduce the project end-to-end from scratch, including:
 
 - Explicit, validated configs for each pipeline stage
 - Pluggable teachers (OpenAI-compatible APIs like DeepSeek, or local vLLM)
