@@ -1,0 +1,34 @@
+run:
+  name: qwen25_0p5b_lora
+  output_dir: runs/qwen25_0p5b_lora
+  seed: 7
+
+student:
+  model: "Qwen/Qwen2.5-0.5B-Instruct"
+  dtype: bfloat16
+  max_seq_len: 2048
+
+train:
+  data_path: "runs/r1_synthetic_small/synthetic.jsonl"
+  output_dir: "runs/qwen25_0p5b_lora/checkpoints"
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 8
+  learning_rate: 2.0e-4
+  num_train_epochs: 1
+  warmup_ratio: 0.03
+  logging_steps: 10
+  save_steps: 200
+  eval_steps: 200
+
+lora:
+  enabled: true
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj"]
+
+validation_gates:
+  run_safety_suite: true
+  run_eval_suite: true
+  safety_suite: "configs/safety/suite_default.yaml"
+  eval_suite: "configs/eval/suite_default.yaml"

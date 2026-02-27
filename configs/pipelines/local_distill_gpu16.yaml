@@ -1,0 +1,46 @@
+﻿run:
+  name: local_distill_gpu16
+  output_dir: runs/local_distill_gpu16
+  seed: 42
+
+teacher:
+  kind: dummy
+  model: dummy-teacher
+  temperature: 0.0
+
+student:
+  model: "Qwen/Qwen2.5-0.5B-Instruct"
+  max_seq_len: 512
+
+data_generation:
+  dataset: toy
+  num_samples: 128
+  output_path: runs/local_distill_gpu16/synthetic.jsonl
+
+distill:
+  method: sft
+
+train:
+  data_path: runs/local_distill_gpu16/synthetic.jsonl
+  output_dir: runs/local_distill_gpu16/checkpoints
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 8
+  learning_rate: 2e-4
+  num_train_epochs: 1
+  warmup_ratio: 0.03
+  logging_steps: 5
+  save_steps: 50
+
+lora:
+  enabled: true
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj"]
+
+safety:
+  suite: "configs/safety/suite_minimal.yaml"
+
+eval:
+  enabled: true
+  suite: "configs/eval/suite_smoke.yaml"

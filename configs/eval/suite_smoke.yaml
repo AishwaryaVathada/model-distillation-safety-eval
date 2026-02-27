@@ -1,0 +1,7 @@
+run:
+  name: eval_smoke
+  output_dir: runs/eval_smoke
+
+benchmarks:
+  - name: toy_accuracy
+    kind: toy

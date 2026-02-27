@@ -1,0 +1,28 @@
+run:
+  name: smoke_test
+  output_dir: runs/smoke_test
+  seed: 42
+
+teacher:
+  kind: dummy
+  model: dummy-teacher
+  temperature: 0.0
+
+student:
+  model: "sshleifer/tiny-gpt2"
+
+data_generation:
+  dataset: toy
+  num_samples: 16
+  store_rationale: false
+
+distill:
+  method: noop  # smoke test does not train
+
+safety:
+  suite: "configs/safety/suite_minimal.yaml"
+
+eval:
+  enabled: true
+  suite: "configs/eval/suite_smoke.yaml"
+  model: "sshleifer/tiny-gpt2"

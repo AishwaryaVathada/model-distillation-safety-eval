@@ -1,0 +1,15 @@
+run:
+  name: eval_suite_default
+  output_dir: runs/eval_suite_default
+
+benchmarks:
+  # These names map to lm-evaluation-harness tasks or wrappers in this repo.
+  # Some benchmarks require additional dataset downloads and may be license-gated.
+  - {name: mmlu, kind: lm_eval, task: mmlu}
+  - {name: agieval, kind: hf_mcq, dataset: baber/agieval, split: validation}
+  - {name: math, kind: hf_math, dataset: EleutherAI/hendrycks_math, split: test}
+  - {name: mgsm_zh, kind: hf_math, dataset: juletxara/mgsm, config: zh, split: test}
+  - {name: humaneval, kind: lm_eval, task: humaneval}
+  - {name: apps, kind: hf_code, dataset: embedding-benchmark/APPS, split: test}
+  - {name: ceval, kind: hf_mcq, dataset: ceval/ceval-exam, split: test}
+  - {name: cluewsc2020, kind: hf_coref, dataset: clue/clue, subset: cluewsc2020, split: validation}

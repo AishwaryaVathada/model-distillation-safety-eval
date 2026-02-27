@@ -1,0 +1,21 @@
+[project]
+name = "distill-safe"
+version = "0.1.0"
+description = "Model distillation with safety specification transfer + pre/post distillation evaluation."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name="Your Name"}]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[project.scripts]
+distill-safe = "distill_safe.cli:app"

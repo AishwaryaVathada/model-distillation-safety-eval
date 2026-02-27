@@ -1,0 +1,19 @@
+run:
+  name: r1_synthetic_small
+  output_dir: runs/r1_synthetic_small
+  seed: 123
+
+teacher:
+  kind: openai_compatible
+  # Example for DeepSeek. Uses OpenAI-compatible chat format.
+  # Provide OPENAI_BASE_URL and OPENAI_API_KEY via environment variables.
+  model: deepseek-reasoner
+  temperature: 0.2
+  max_tokens: 1024
+
+data_generation:
+  dataset: toy
+  num_samples: 200
+  store_rationale: false
+  prompt_template: default_reasoning_distill
+  output_path: runs/r1_synthetic_small/synthetic.jsonl

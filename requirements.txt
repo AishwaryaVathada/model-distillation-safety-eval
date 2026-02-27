@@ -1,0 +1,22 @@
+# Core
+pydantic>=2.6
+pyyaml>=6.0
+typer>=0.12
+rich>=13.7
+tqdm>=4.66
+requests>=2.31
+
+# ML stack (optional but recommended for real training/eval)
+torch>=2.2; platform_system != "Windows" or platform_machine != "ARM64"
+transformers>=4.41
+datasets>=2.19
+accelerate>=0.31
+peft>=0.11
+trl>=0.9
+
+# Evaluation
+lm-eval>=0.4.3
+
+# Dev
+pytest>=8.0
+ruff>=0.6
